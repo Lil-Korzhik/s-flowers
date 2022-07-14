@@ -11,17 +11,33 @@ export const getAllProducts = expressAsyncHandler(async (req, res) => {
     res.json(products);
 });
 
-// @desc    Get Product By Id
+// @desc    Get Products By Id
 // @route   GET /api/products:id
 // @access  Public
-export const getProductById = expressAsyncHandler(async (req, res) => {
+export const getProductsById = expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
-    if(productId.length !== 24) throw ApiError.BadRequest('ID должен быть длиной в 24 символа');
 
     const product = await Product.findById(productId);
-    if(!product) throw ApiError.BadRequest('Продукт с таким ID не существует');
+    if(!product) throw ApiError.BadRequest('Продукт с таким ID не найден');
 
     res.json(product);
+});
+
+// @desc    Get Products By Category
+// @route   POST /api/products
+// @access  Public
+export const getProductsByCategory = expressAsyncHandler(async (req, res) => {
+    const {categoryName} = req.body;
+    if(!categoryName) throw ApiError.EmptyFields();
+
+    let products = [];
+    if(categoryName == 'Все') {
+        products = await Product.find();
+    } else {
+        products = await Product.find({categoryName});
+    }
+
+    res.json(products);
 });
 
 // @desc    Create Product
@@ -36,8 +52,11 @@ export const createProduct = expressAsyncHandler(async (req, res) => {
     const {title, description, price} = req.body;
     if(!title || !description || !price) throw ApiError.EmptyFields();
 
+    let { categoryName } = req.body;
+    if(!categoryName) categoryName = 'Все';
+
     const imageName = fileService.saveFile(image, 'products');
-    const newProduct = await Product.create({title, description, price, image: imageName});
+    const newProduct = await Product.create({title, description, price, image: imageName, categoryName});
     res.json(newProduct);
 });
 

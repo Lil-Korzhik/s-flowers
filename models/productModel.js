@@ -5,7 +5,8 @@ const productSchema = mongoose.Schema({
     description: {type: String, required: true},
     price: {type: String, required: true},
     image: {type: String, required: true},
-    isExists: {type: Boolean, default: true}
+    isExists: {type: Boolean, default: true},
+    categoryName: {type: String, default: 'Все'}
 });
 
 const Product = mongoose.model('Product', productSchema);
