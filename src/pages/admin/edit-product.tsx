@@ -14,6 +14,9 @@ import CheckBox from "../../components/UI/CheckBox";
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { IProduct } from "../../interfaces/IProduct";
+import SelectCategory from "../../components/Category/SelectCategory";
+
+import $api from "../../axios";
 
 const API_URL = config.API_URL;
 
@@ -25,15 +28,21 @@ const EditProduct: NextPage = () => {
     const [descriptionValue, setDescriptionValue] = useState<string>('');
     const [priceValue, setPriceValue] = useState<string>('');
     const [isExistsValue, setIsExistsValue] = useState<boolean>(true);
+    const [categoryValue, setCategoryValue] = useState<string>('Все');
     const [imageValue, setImageValue] = useState('');
 
     const getProduct = async () => {
+        Swal.showLoading();
+
         const response = await axios.get(API_URL + '/products/' + productId);
         const product = response.data;
         setTitleValue(product.title);
         setDescriptionValue(product.description);
         setPriceValue(product.price);
         setIsExistsValue(product.isExists);
+        setCategoryValue(product.categoryName);
+
+        Swal.close();
     }
 
     useEffect(() => {
@@ -50,10 +59,12 @@ const EditProduct: NextPage = () => {
         formData.append('description', descriptionValue);
         formData.append('price', priceValue);
         formData.append('isExists', isExistsValue.toString());
+        formData.append('categoryName', categoryValue);
         if(imageValue != '') formData.append('image', imageValue);
         
         try {
-            const response = await axios.put(API_URL + '/products', formData);
+            Swal.showLoading();
+            const response = await $api.put('/products', formData);
             Swal.fire({
                 title: 'Товар был обновлён!',
                 icon: 'success'
@@ -95,6 +106,7 @@ const EditProduct: NextPage = () => {
                     setValue={setPriceValue}
                     value={priceValue} />
 
+                <SelectCategory onChangeHandle={e => setCategoryValue(e.target.value)} optionName={categoryValue} />
                 <CheckBox value={isExistsValue} setValue={setIsExistsValue} />
 
                 <FileInput setValue={setImageValue} />

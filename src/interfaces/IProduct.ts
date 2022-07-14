@@ -6,4 +6,5 @@ export interface IProduct {
     isExists: boolean;
     image: string;
     removeProduct?: any;
+    categoryName: string;
 }

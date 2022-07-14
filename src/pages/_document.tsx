@@ -14,7 +14,7 @@ const Document = () => {
                 <meta name="description" content="Каталог цветов S-Flowers" />
                 <meta name="keywords" content="каталог, цветы, товары" />
                 {/* Styling */}
-                <meta name="theme-color" content="#AF48F4" />
+                <meta name="theme-color" content="#3874ab" />
                 <link rel="shortcut icon" href="/favicon.png" type="image/png" />
                 {/* OG Tags */}
                 <meta property="og:title" content="S-Flowers" />

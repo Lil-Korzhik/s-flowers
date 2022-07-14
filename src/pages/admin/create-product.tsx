@@ -13,6 +13,8 @@ import TextArea from '../../components/UI/TextArea';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import CheckBox from '../../components/UI/CheckBox';
+import $api from '../../axios';
+import SelectCategory from '../../components/Category/SelectCategory';
 
 const API_URL = config.API_URL;
 
@@ -20,6 +22,7 @@ const CreateProduct: NextPage = () => {
     const [titleValue, setTitleValue] = useState<string>('');
     const [descriptionValue, setDescriptionValue] = useState<string>('');
     const [priceValue, setPriceValue] = useState<string>('');
+    const [categoryValue, setCategoryValue] = useState<string>('');
     const [imageValue, setImageValue] = useState(null);
 
     useEffect(() => {
@@ -36,10 +39,12 @@ const CreateProduct: NextPage = () => {
         formData.append('title', titleValue);
         formData.append('description', descriptionValue);
         formData.append('price', priceValue);
+        formData.append('categoryName', categoryValue);
         formData.append('image', imageValue);
 
         try {
-            const response = await axios.post(API_URL + '/products', formData);
+            Swal.showLoading();
+            const response = await $api.post('/products', formData);
             Swal.fire({
                 title: 'Товар создан!',
                 icon: 'success'
@@ -85,6 +90,8 @@ const CreateProduct: NextPage = () => {
                     className="create-product__input" 
                     value={priceValue} 
                     setValue={setPriceValue} />
+
+                <SelectCategory onChangeHandle={e => setCategoryValue(e.target.value)} />
 
                 <FileInput setValue={setImageValue} />
 

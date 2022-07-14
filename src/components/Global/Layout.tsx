@@ -25,6 +25,14 @@ const Layout: FC<PropsType> = ({children}) => {
                     <Link href="/admin/create-product">
                         <button type="button" className="buttons__item aqua" >➕</button>
                     </Link>
+
+                    <Link href="/admin/create-category">
+                        <button type="button" className="buttons__item aqua" >+К</button>
+                    </Link>
+
+                    <Link href="/admin/edit-content">
+                        <button type="button" className="buttons__item aqua" >✎</button>
+                    </Link>
                     
                     <Link href="/">
                         <button type="button" className="buttons__item aqua" >🏠</button>

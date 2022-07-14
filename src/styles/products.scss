@@ -45,8 +45,6 @@
         &-status {
             position: absolute;
             bottom: 20px;
-            display: flex;
-            align-items: center;
 
             &-text {
                 color: #39B845;
@@ -61,6 +59,17 @@
         &-buttons {
             display: flex;
             align-items: center;
+        }
+
+        &-container {
+            display: flex;
+            align-items: center;
+        }
+
+        &-category {
+            margin-bottom: 10px;
+            font-size: 15px;
+            font-weight: 500;
         }
 
         &-edit {
@@ -118,5 +127,33 @@
 
     &.aqua {
         background: #3961b8;
+    }
+}
+
+.categories {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    row-gap: 30px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        font-size: 20px;
+        box-shadow: 5px 5px 17px 5px rgba(0,0,0,0.16);
+        border-radius: 20px;
+        padding: 10px;
+
+        &:not(:last-of-type) {
+            margin-right: 20px;
+        }
+
+        &-remove {
+            padding: 10px;
+            background: #b83939;
+            margin-left: 10px;
+        }
     }
 }

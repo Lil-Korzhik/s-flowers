@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const API_URL = config.API_URL;
 
-const ProductItem: FC<IProduct> = ({_id, title, description, price, isExists, image, removeProduct}) => {
+const ProductItem: FC<IProduct> = ({_id, title, description, price, isExists, image, removeProduct, categoryName}) => {
     return (
         <li className="products__item">
             <img src={image} className="products__item-img" />
@@ -18,17 +18,21 @@ const ProductItem: FC<IProduct> = ({_id, title, description, price, isExists, im
                 <span className="products__item-price">{price} ₴</span>
 
                 <div className="products__item-status">
-                    <p className={`products__item-status-text ${!isExists && 'not-exists'}`}>
-                        {isExists ? 'В наличии' : 'Нет в наличии'}
-                    </p>
-                    {localStorage.isAuth && 
-                        <div className="products__item-buttons">
-                            <Link href={{pathname: 'admin/edit-product', query: { productId: _id}}}>
-                                <button className="products__item-edit">Р</button>
-                            </Link>
-                            <button className="products__item-remove" onClick={() => removeProduct(_id)}>X</button>
-                        </div>
-                    }
+                    {categoryName != 'Все' && <p className="products__item-category">{categoryName}</p>}
+
+                    <div className="products__item-container">
+                        <p className={`products__item-status-text ${!isExists && 'not-exists'}`}>
+                            {isExists ? 'В наличии' : 'Нет в наличии'}
+                        </p>
+                        {localStorage.isAuth && 
+                            <div className="products__item-buttons">
+                                <Link href={{pathname: 'admin/edit-product', query: { productId: _id}}}>
+                                    <button className="products__item-edit">Р</button>
+                                </Link>
+                                <button className="products__item-remove" onClick={() => removeProduct(_id)}>X</button>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </li>

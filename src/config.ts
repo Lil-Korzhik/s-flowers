@@ -1,4 +1,4 @@
-const NODE_ENV: string = 'production';
+const NODE_ENV: string = 'development';
 
 const DEVELOPMENT_API_URL: string = 'http://localhost:5000/api';
 const PRODUCTION_API_URL: string = 'https://s-flowers.herokuapp.com/api';
