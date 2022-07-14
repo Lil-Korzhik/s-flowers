@@ -1,0 +1,30 @@
+{
+  "name": "flowers-backend",
+  "version": "1.0.0",
+  "description": "Flowers Back-End App",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm run start",
+    "server": "nodemon server.js"
+  },
+  "author": "Nikolay Korzhikov",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "express-fileupload": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "mongoose": "^6.3.3",
+    "path": "^0.12.7",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16"
+  }
+}
