@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import morgan from 'morgan';
 import colors from 'colors';
 import fileUpload from 'express-fileupload';
 import path from 'path';
@@ -23,9 +22,6 @@ const NODE_ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-
-if(NODE_ENV === 'development')
-    app.use(morgan('dev'));
 
 process.env.PWD = process.cwd();
 
