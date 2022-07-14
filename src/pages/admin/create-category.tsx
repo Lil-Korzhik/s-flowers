@@ -43,7 +43,7 @@ const CreateCategory: NextPage = () => {
             Swal.showLoading();
 
             const response = await $api.delete('/category', {data: {categoryId}});
-            const newCategories = categories.filter(item => item._id != response.data._id);
+            const newCategories = categories.filter(({_id}: any) => _id != response.data._id);
             dispatch(setCategories(newCategories));
 
             Swal.fire({
