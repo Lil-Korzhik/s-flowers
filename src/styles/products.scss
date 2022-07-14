@@ -1,0 +1,122 @@
+.products {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 38px;
+
+    &__item {
+        display: flex;
+        width: 600px;
+        border: 2px solid #E3E5E6;
+
+        &:not(:last-of-type) {
+            margin-bottom: 10px;
+        }
+
+        &-img {
+            width: 300px;
+            height: 290px;
+        }
+
+        &-info {
+            position: relative;
+            margin: 20px 0 0 20px;
+            width: 100%;
+        }
+
+        &-title {
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        &-desc {
+            font-size: 16px;
+            margin-top: 9px;
+            margin-bottom: 15px;
+        }
+
+        &-price {
+            font-size: 25px;
+            font-weight: 500;
+            color: #99112D;
+        }
+
+        &-status {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            align-items: center;
+
+            &-text {
+                color: #39B845;
+                font-weight: 500;
+ 
+                &.not-exists {
+                    color: #b83939;
+                }
+            }
+        }
+
+        &-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        &-edit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 50%;
+        }
+
+        &-remove {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            background: #b83939;
+            border-radius: 50%;
+        }
+    }
+}
+
+.buttons {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.buttons__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+
+    &.red {
+        background: #b83939;
+    }
+
+    &.aqua {
+        background: #3961b8;
+    }
+}
