@@ -20,6 +20,8 @@ const Auth: NextPage = () => {
     e.preventDefault();
 
     try {
+      Swal.showLoading();
+      
       const response = await axios.post(API_URL + '/users/login', {
           login: loginValue,
           password: passwordValue
