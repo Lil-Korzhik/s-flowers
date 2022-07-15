@@ -16,12 +16,15 @@ const Auth: NextPage = () => {
   const [loginValue, setLoginValue] = useState<string>('');
   const [passwordValue, setPasswordValue] = useState<string>('');
 
+  const [buttonAccess, setButtonAccess] = useState<boolean>(true);
+
   const submitHandle = async e => {
     e.preventDefault();
 
     try {
       Swal.showLoading();
-      
+      setButtonAccess(false);
+
       const response = await axios.post(API_URL + '/users/login', {
           login: loginValue,
           password: passwordValue
@@ -32,6 +35,7 @@ const Auth: NextPage = () => {
         title: 'Авторизация прошла успешно',
         icon: 'success'
       });
+      setButtonAccess(true);
 
       setTimeout(() => Router.reload(), 1000);
     } catch (e) {
@@ -56,7 +60,7 @@ const Auth: NextPage = () => {
       <form className="auth" onSubmit={submitHandle}>
         <Input type="text" className="auth__input" placeholder="Логин" value={loginValue} setValue={setLoginValue} />
         <Input type="text" className="auth__input" placeholder="Пароль" value={passwordValue} setValue={setPasswordValue} />
-        <button type="submit" className="auth__btn">Авторизоваться</button>
+        <button type="submit" className={`auth__btn ${!buttonAccess ? 'disabled' : ''}`}>Авторизоваться</button>
       </form>
     </div>
   );
