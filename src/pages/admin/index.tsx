@@ -43,6 +43,7 @@ const Auth: NextPage = () => {
         title: e.response?.data?.message,
         icon: 'error'
       });
+      setButtonAccess(true);
     }
   } 
 
@@ -60,7 +61,7 @@ const Auth: NextPage = () => {
       <form className="auth" onSubmit={submitHandle}>
         <Input type="text" className="auth__input" placeholder="Логин" value={loginValue} setValue={setLoginValue} />
         <Input type="text" className="auth__input" placeholder="Пароль" value={passwordValue} setValue={setPasswordValue} />
-        <button type="submit" className={`auth__btn ${!buttonAccess ? 'disabled' : ''}`}>Авторизоваться</button>
+        <button type="submit" className={`auth__btn ${!buttonAccess ? 'disabled' : ''}`} disabled={!buttonAccess ? true : false}>Авторизоваться</button>
       </form>
     </div>
   );

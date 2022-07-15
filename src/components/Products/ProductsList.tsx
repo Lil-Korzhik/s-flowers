@@ -52,7 +52,7 @@ const ProductsList: FC = () => {
                     key={index} />
             ))}
 
-            {products.length <= 0 && <h3>Пока что нету никаких товаров.</h3>}
+            {products.length <= 0 && <h3>Пока что нет никаких товаров.</h3>}
         </ul>
     );
 }
